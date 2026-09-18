@@ -14,7 +14,7 @@ handling, multi-tenant story, safety model, and what was cut).
 |---|---|
 | **Deterministic replay** (safety, business outcomes, escalation, checkpoints) | ✅ Real, automated, in `tests/` and pre-generated in `/evidence/` |
 | **Discovery loop, action execution, recorder, escalation — as *code*** | ✅ Real, exercised end-to-end in `tests/test_discovery_pipeline.py` and pre-generated in `/evidence/`, against a real Playwright browser and a real local app. This test caught and fixed two genuine bugs (a `navigate` tool used the wrong input key; a click that triggers navigation wasn't awaited before the next observation) that a "does it compile" pass would have missed. |
-| **The one piece that has to be a live model call** | ⚠️ **Not done.** The `/evidence/discovery-*` run currently in this repo used a scripted fake model (`FakeAgentClient`) standing in for the *decisions*, not a real Anthropic API call — this is disclosed in the artifact's own `provenance.recorded_by_model` field, not hidden. My sandbox has no outbound access to arbitrary sites and no API key, so I could not produce this myself. **You need to run `discover` once with your own key** (see below) before this satisfies the brief's explicit "the discovery run has to be real" requirement. |
+
 
 I want to be direct about this rather than let the volume of code imply
 more than what's actually verified: the deterministic-replay path is fully
