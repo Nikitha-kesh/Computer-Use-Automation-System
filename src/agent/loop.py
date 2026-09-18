@@ -64,8 +64,16 @@ def run_discovery(
     max_steps: int = 25,
     interactive_escalation: bool = True,
     model: Optional[str] = None,
+    llm_client: Optional[object] = None,
 ) -> DiscoveryOutcome:
-    llm = DiscoveryAgentClient(model=model) if model else DiscoveryAgentClient()
+    """
+    `llm_client`, if given, must implement the same interface as
+    DiscoveryAgentClient (start / observe_and_decide / report_tool_result).
+    This is the seam that lets the loop be exercised end-to-end with a
+    scripted fake in tests, without needing live model access -- see
+    tests/test_discovery_pipeline.py.
+    """
+    llm = llm_client or (DiscoveryAgentClient(model=model) if model else DiscoveryAgentClient())
     llm.start(goal=goal, target_url=target_url, declared_params=declared_params)
     escalation = EscalationManager(evidence, page, interactive=interactive_escalation)
     risk_policy = RiskPolicy()
@@ -195,7 +203,7 @@ def run_discovery(
             # approved -> fall through and actually execute
 
         # ---- build locator + execute --------------------------------------
-        value = tc.input.get("value")
+        value = tc.input.get("url") if action == ActionType.NAVIGATE else tc.input.get("value")
         locator = build_locator_from_perceived(element) if element else None
         result: ActionExecutionResult = execute_action(page, action, locator=locator, value=value, timeout_ms=5000)
 

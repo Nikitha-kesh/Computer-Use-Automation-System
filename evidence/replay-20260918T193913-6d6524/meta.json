@@ -1,0 +1,10 @@
+{
+  "run_id": "replay-20260918T193913-6d6524",
+  "run_type": "replay",
+  "artifact_id": "mockbank__open-sub-account",
+  "version": "1.0.0",
+  "kind": "success",
+  "outputs": {
+    "account_number": "8488534793"
+  }
+}

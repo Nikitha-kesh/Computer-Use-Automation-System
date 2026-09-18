@@ -8,19 +8,22 @@ outcomes, recoverable conditions, hard failures, and human escalation.
 See `/REPORT.md` for the design write-up (architecture, schema, error
 handling, multi-tenant story, safety model, and what was cut).
 
-## Status of the two required runs
+## Status of the two required runs — read this before assuming the repo is "done"
 
 | Run | Status |
 |---|---|
 | **Deterministic replay** (safety, business outcomes, escalation, checkpoints) | ✅ Real, automated, in `tests/` and pre-generated in `/evidence/` |
-| **LLM-driven discovery** | ⚠️ Code is complete and ready to run (`src/agent/loop.py`, `src/agent/llm_client.py`) but **has not been executed here** — my sandbox has no outbound internet access to arbitrary sites and no Anthropic API key. You'll need to run it once yourself (2 minutes, costs cents) — see "Run the real discovery step" below. |
+| **Discovery loop, action execution, recorder, escalation — as *code*** | ✅ Real, exercised end-to-end in `tests/test_discovery_pipeline.py` and pre-generated in `/evidence/`, against a real Playwright browser and a real local app. This test caught and fixed two genuine bugs (a `navigate` tool used the wrong input key; a click that triggers navigation wasn't awaited before the next observation) that a "does it compile" pass would have missed. |
+| **The one piece that has to be a live model call** | ⚠️ **Not done.** The `/evidence/discovery-*` run currently in this repo used a scripted fake model (`FakeAgentClient`) standing in for the *decisions*, not a real Anthropic API call — this is disclosed in the artifact's own `provenance.recorded_by_model` field, not hidden. My sandbox has no outbound access to arbitrary sites and no API key, so I could not produce this myself. **You need to run `discover` once with your own key** (see below) before this satisfies the brief's explicit "the discovery run has to be real" requirement. |
 
-I did not fake or hand-write a "transcript" to look like a discovery run.
-The `/evidence/` directory currently contains two genuine deterministic
-**replay** runs (one success, one business-outcome error) produced by
-actually driving a real Playwright browser against a real local server.
-Once you run `discover` with your own key, its output — the true
-LLM-driven run — will land in `/evidence/` alongside these.
+I want to be direct about this rather than let the volume of code imply
+more than what's actually verified: the deterministic-replay path is fully
+proven end to end, including one genuine business-outcome error. The
+discovery path is proven end to end *mechanically* (browser control,
+locator building, risk/escalation, artifact recording, and that the
+resulting artifact actually replays) — but the one input that can't be
+faked without misrepresenting the project — an LLM actually deciding what
+to click — is the step left for you.
 
 ## Setup
 

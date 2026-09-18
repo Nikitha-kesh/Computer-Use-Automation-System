@@ -110,13 +110,13 @@ document.addEventListener('click', function(e) {
 
 CONFIRMATION_BODY = """
 <h1>Account Opened</h1>
-<div id="confirmation-panel">
+<div id="confirmation-panel" role="region" aria-label="Account confirmation panel">
   <p>Your new sub-account has been created.</p>
   <table>
-    <tr><td>Account Number</td><td id="account-number">{{ account_number }}</td></tr>
-    <tr><td>Account Holder</td><td id="confirm-holder">{{ name }}</td></tr>
-    <tr><td>Account Type</td><td id="confirm-type">{{ account_type }}</td></tr>
-    <tr><td>Initial Deposit</td><td id="confirm-deposit">${{ deposit }}</td></tr>
+    <tr><td>Account Number</td><td id="account-number" role="text" aria-label="Account Number value">{{ account_number }}</td></tr>
+    <tr><td>Account Holder</td><td id="confirm-holder" role="text" aria-label="Account Holder value">{{ name }}</td></tr>
+    <tr><td>Account Type</td><td id="confirm-type" role="text" aria-label="Account Type value">{{ account_type }}</td></tr>
+    <tr><td>Initial Deposit</td><td id="confirm-deposit" role="text" aria-label="Initial Deposit value">${{ deposit }}</td></tr>
   </table>
 </div>
 """

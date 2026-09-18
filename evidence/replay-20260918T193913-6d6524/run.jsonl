@@ -1,0 +1,16 @@
+{"ts": 1789760353.6844218, "event": "replay_started", "artifact_id": "mockbank__open-sub-account", "version": "1.0.0", "args": ["base_url", "member_id", "initial_deposit"]}
+{"ts": 1789760353.7202115, "event": "replay_step", "step_id": "s0_nav", "action": "navigate", "ok": true, "error": null, "attempts": 1}
+{"ts": 1789760353.800574, "event": "replay_step", "step_id": "s1_cookie", "action": "click", "ok": true, "error": null, "attempts": 1}
+{"ts": 1789760353.8192537, "event": "replay_step", "step_id": "s2_fill_member", "action": "fill", "ok": true, "error": null, "attempts": 1}
+{"ts": 1789760353.9108467, "event": "replay_step", "step_id": "s3_lookup", "action": "click", "ok": true, "error": null, "attempts": 1}
+{"ts": 1789760353.9644659, "event": "replay_step", "step_id": "s4_type", "action": "click", "ok": true, "error": null, "attempts": 1}
+{"ts": 1789760354.0128171, "event": "replay_step", "step_id": "s5_type_option", "action": "click", "ok": true, "error": null, "attempts": 1}
+{"ts": 1789760354.0283363, "event": "replay_step", "step_id": "s6_deposit", "action": "fill", "ok": true, "error": null, "attempts": 1}
+{"ts": 1789760354.0796342, "event": "replay_step", "step_id": "s7_terms", "action": "check", "ok": true, "error": null, "attempts": 1}
+{"ts": 1789760354.1219873, "event": "escalation_raised", "request_id": "esc-b14f8869", "capability_name": "mockbank: open a new sub-account", "context_ref": "mockbank__open-sub-account", "step_id": "s8_submit", "reason": "step is risky_irreversible: submit account", "screenshot_path": "evidence/replay-20260918T193913-6d6524/screenshots/1789760354079_escalation.png", "current_url": "http://127.0.0.1:5098/open-account?member_id=12345", "created_at": "2026-09-18T19:39:14.121918+00:00"}
+{"ts": 1789760354.12211, "event": "control_transferred", "to": "human", "request_id": "esc-b14f8869"}
+{"ts": 1789760354.1227226, "event": "human_action", "request_id": "esc-b14f8869", "action": "auto_approve", "note": "non-interactive mode (--no-interactive); simulating operator approval"}
+{"ts": 1789760354.1228309, "event": "control_transferred", "to": "agent", "request_id": "esc-b14f8869", "approved": true}
+{"ts": 1789760354.1808336, "event": "replay_step", "step_id": "s8_submit", "action": "click", "ok": true, "error": null, "attempts": 1}
+{"ts": 1789760354.2206779, "event": "replay_step", "step_id": "s9_extract_acct", "action": "extract", "ok": true, "error": null, "attempts": 1}
+{"ts": 1789760354.2310262, "event": "replay_succeeded", "outputs": {"account_number": "8488534793"}, "had_recoverable": false}

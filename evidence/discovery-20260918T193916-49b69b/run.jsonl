@@ -1,0 +1,38 @@
+{"ts": 1789760356.4036353, "event": "discovery_started", "goal": "Open a new sub-account for member 12345 and reach the confirmation screen", "target_url": "http://127.0.0.1:5097/", "app_id": "mockbank"}
+{"ts": 1789760356.4116907, "event": "llm_turn", "step": 0, "text": "scripted navigate", "stop_reason": "tool_use"}
+{"ts": 1789760356.411823, "event": "tool_call", "step": 0, "name": "navigate", "input": {"url": "http://127.0.0.1:5097/"}}
+{"ts": 1789760356.441252, "event": "action_executed", "step": 0, "action": "navigate", "element": "", "ok": true, "error": null, "matched_strategy": "None"}
+{"ts": 1789760356.4532237, "event": "llm_turn", "step": 1, "text": "scripted click", "stop_reason": "tool_use"}
+{"ts": 1789760356.4533236, "event": "tool_call", "step": 1, "name": "click", "input": {"element_index": 0}}
+{"ts": 1789760356.5489511, "event": "action_executed", "step": 1, "action": "click", "element": "Accept", "ok": true, "error": null, "matched_strategy": "LocatorStrategy.ROLE_NAME"}
+{"ts": 1789760356.552775, "event": "llm_turn", "step": 2, "text": "scripted fill", "stop_reason": "tool_use"}
+{"ts": 1789760356.552908, "event": "tool_call", "step": 2, "name": "fill", "input": {"element_index": 1, "value": "12345", "param_name": "member_id"}}
+{"ts": 1789760356.569673, "event": "action_executed", "step": 2, "action": "fill", "element": "Member ID", "ok": true, "error": null, "matched_strategy": "LocatorStrategy.ROLE_NAME"}
+{"ts": 1789760356.57259, "event": "llm_turn", "step": 3, "text": "scripted click", "stop_reason": "tool_use"}
+{"ts": 1789760356.5726802, "event": "tool_call", "step": 3, "name": "click", "input": {"element_index": 2}}
+{"ts": 1789760356.6590774, "event": "action_executed", "step": 3, "action": "click", "element": "Look Up Member", "ok": true, "error": null, "matched_strategy": "LocatorStrategy.ROLE_NAME"}
+{"ts": 1789760356.6687737, "event": "llm_turn", "step": 4, "text": "scripted click", "stop_reason": "tool_use"}
+{"ts": 1789760356.668899, "event": "tool_call", "step": 4, "name": "click", "input": {"element_index": 2}}
+{"ts": 1789760356.713338, "event": "action_executed", "step": 4, "action": "click", "element": "Account Type", "ok": true, "error": null, "matched_strategy": "LocatorStrategy.ROLE_NAME"}
+{"ts": 1789760356.717616, "event": "llm_turn", "step": 5, "text": "scripted click", "stop_reason": "tool_use"}
+{"ts": 1789760356.7176983, "event": "tool_call", "step": 5, "name": "click", "input": {"element_index": 3}}
+{"ts": 1789760356.7623596, "event": "action_executed", "step": 5, "action": "click", "element": "Savings", "ok": true, "error": null, "matched_strategy": "LocatorStrategy.ROLE_NAME"}
+{"ts": 1789760356.7661407, "event": "llm_turn", "step": 6, "text": "scripted fill", "stop_reason": "tool_use"}
+{"ts": 1789760356.7662287, "event": "tool_call", "step": 6, "name": "fill", "input": {"element_index": 3, "value": "100", "param_name": "initial_deposit"}}
+{"ts": 1789760356.7833252, "event": "action_executed", "step": 6, "action": "fill", "element": "Initial Deposit (USD)", "ok": true, "error": null, "matched_strategy": "LocatorStrategy.LABEL_TEXT"}
+{"ts": 1789760356.7868137, "event": "llm_turn", "step": 7, "text": "scripted check", "stop_reason": "tool_use"}
+{"ts": 1789760356.786898, "event": "tool_call", "step": 7, "name": "check", "input": {"element_index": 5}}
+{"ts": 1789760356.8281107, "event": "action_executed", "step": 7, "action": "check", "element": "I confirm the account holder has agreed to the terms", "ok": true, "error": null, "matched_strategy": "LocatorStrategy.ROLE_NAME"}
+{"ts": 1789760356.8311567, "event": "llm_turn", "step": 8, "text": "scripted click", "stop_reason": "tool_use"}
+{"ts": 1789760356.8328176, "event": "tool_call", "step": 8, "name": "click", "input": {"element_index": 6}}
+{"ts": 1789760356.8846035, "event": "escalation_raised", "request_id": "esc-094910f5", "capability_name": "mockbank", "context_ref": "Open a new sub-account for member 12345 and reach the confirmation screen", "step_id": null, "reason": "about to perform risky/irreversible action: click on 'Submit'", "screenshot_path": "evidence/discovery-20260918T193916-49b69b/screenshots/1789760356832_escalation.png", "current_url": "http://127.0.0.1:5097/open-account?member_id=12345", "created_at": "2026-09-18T19:39:16.884536+00:00"}
+{"ts": 1789760356.884682, "event": "control_transferred", "to": "human", "request_id": "esc-094910f5"}
+{"ts": 1789760356.8847256, "event": "human_action", "request_id": "esc-094910f5", "action": "auto_approve", "note": "non-interactive mode (--no-interactive); simulating operator approval"}
+{"ts": 1789760356.884758, "event": "control_transferred", "to": "agent", "request_id": "esc-094910f5", "approved": true}
+{"ts": 1789760356.9444816, "event": "action_executed", "step": 8, "action": "click", "element": "Submit", "ok": true, "error": null, "matched_strategy": "LocatorStrategy.ROLE_NAME"}
+{"ts": 1789760356.9496088, "event": "llm_turn", "step": 9, "text": "scripted extract", "stop_reason": "tool_use"}
+{"ts": 1789760356.949689, "event": "tool_call", "step": 9, "name": "extract", "input": {"element_index": 1, "output_name": "account_number"}}
+{"ts": 1789760356.986324, "event": "action_executed", "step": 9, "action": "extract", "element": "Account Number value", "ok": true, "error": null, "matched_strategy": "LocatorStrategy.CSS"}
+{"ts": 1789760356.989935, "event": "llm_turn", "step": 10, "text": "scripted finish", "stop_reason": "tool_use"}
+{"ts": 1789760356.9900165, "event": "tool_call", "step": 10, "name": "finish", "input": {"success": true, "checkpoint_expected_text": null, "summary": "Opened a new sub-account and reached the confirmation screen.", "checkpoint_element_index": 0}}
+{"ts": 1789760356.9900565, "event": "discovery_finished", "success": true, "summary": "Opened a new sub-account and reached the confirmation screen."}

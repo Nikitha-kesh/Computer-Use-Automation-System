@@ -97,7 +97,22 @@ _EXTRACT_JS = r"""
     return parts.join(' > ');
   }
 
-  const els = Array.from(document.querySelectorAll(INTERACTIVE_SELECTOR));
+  // Interactive elements the agent can act on, PLUS leaf "display" elements
+  // (table cells, short leaf text nodes with an id/role, etc.) the agent
+  // can *read from* via extract(). Without this second pass, confirmation
+  // screens that echo data back in plain <td>/<span> elements would be
+  // invisible to the agent -- it could act, but never read a result back.
+  const DISPLAY_SELECTOR = 'td, th, dd, dt, [id], [data-testid], [data-test]';
+  const interactiveEls = new Set(document.querySelectorAll(INTERACTIVE_SELECTOR));
+  const displayCandidates = Array.from(document.querySelectorAll(DISPLAY_SELECTOR))
+    .filter(el => !interactiveEls.has(el))
+    .filter(el => el.children.length === 0)  // leaf nodes only
+    .filter(el => {
+      const t = (el.textContent || '').trim();
+      return t.length > 0 && t.length < 300;
+    });
+
+  const els = Array.from(interactiveEls).concat(displayCandidates);
   return els.map((el, i) => {
     const rect = el.getBoundingClientRect();
     const style = window.getComputedStyle(el);

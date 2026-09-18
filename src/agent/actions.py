@@ -66,6 +66,14 @@ def execute_action(
 
         if action == ActionType.CLICK:
             el.click(timeout=timeout_ms)
+            # Best-effort: a click may have triggered a navigation (e.g. a
+            # form submit). If so, wait for it to settle before the caller's
+            # next perceive()/action, so we never observe a mid-navigation
+            # DOM. If nothing was triggered this resolves immediately.
+            try:
+                page.wait_for_load_state("domcontentloaded", timeout=2000)
+            except Exception:
+                pass
         elif action == ActionType.FILL:
             el.fill(value or "", timeout=timeout_ms)
         elif action == ActionType.SELECT:

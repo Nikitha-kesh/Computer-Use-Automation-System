@@ -1,0 +1,7 @@
+{
+  "run_id": "discovery-20260918T193916-49b69b",
+  "run_type": "discovery",
+  "goal": "open sub-account",
+  "success": true,
+  "summary": "Opened a new sub-account and reached the confirmation screen."
+}

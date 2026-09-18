@@ -1,0 +1,483 @@
+{
+  "schema_version": "1.0",
+  "artifact_id": "mockbank__open-a-new-sub-account-for-member-12345-and-reach-the-confir",
+  "name": "mockbank: Open a new sub-account for member 12345 and reach the confirmation screen",
+  "version": "1.0.0",
+  "description": "Open a new sub-account for member 12345 and reach the confirmation screen",
+  "target": {
+    "app_id": "mockbank",
+    "base_url": "http://127.0.0.1:5097",
+    "vendor_product": null,
+    "tenant_id": null
+  },
+  "input_params": [
+    {
+      "name": "member_id",
+      "type": "string",
+      "required": true,
+      "description": "Value for 'Member ID'",
+      "enum_values": null,
+      "pii": false
+    },
+    {
+      "name": "initial_deposit",
+      "type": "string",
+      "required": true,
+      "description": "Value for 'Initial Deposit (USD)'",
+      "enum_values": null,
+      "pii": false
+    }
+  ],
+  "output_fields": [
+    {
+      "name": "account_number",
+      "type": "string",
+      "description": "Extracted from 'Account Number value'",
+      "source_step_id": "step_10_extract"
+    }
+  ],
+  "steps": [
+    {
+      "step_id": "step_0_navigate",
+      "description": "Open http://127.0.0.1:5097/",
+      "action": "navigate",
+      "locator": null,
+      "value_template": "http://127.0.0.1:5097/",
+      "output_binding": null,
+      "risk": "safe",
+      "timeout_ms": 5000,
+      "retry": {
+        "max_attempts": 2,
+        "backoff_ms": 500,
+        "retry_on": [
+          "timeout",
+          "transient_load"
+        ]
+      }
+    },
+    {
+      "step_id": "step_2_click",
+      "description": "click on 'Accept'",
+      "action": "click",
+      "locator": {
+        "description": "button \"Accept\"",
+        "candidates": [
+          {
+            "strategy": "role_name",
+            "value": "button::Accept",
+            "frame_path": [],
+            "confidence": 0.9
+          },
+          {
+            "strategy": "css",
+            "value": "#cookie-accept",
+            "frame_path": [],
+            "confidence": 0.6
+          },
+          {
+            "strategy": "css",
+            "value": "#cookie-accept",
+            "frame_path": [],
+            "confidence": 0.3
+          },
+          {
+            "strategy": "text",
+            "value": "Accept",
+            "frame_path": [],
+            "confidence": 0.5
+          }
+        ]
+      },
+      "value_template": null,
+      "output_binding": null,
+      "risk": "safe",
+      "timeout_ms": 5000,
+      "retry": {
+        "max_attempts": 2,
+        "backoff_ms": 500,
+        "retry_on": [
+          "timeout",
+          "transient_load"
+        ]
+      }
+    },
+    {
+      "step_id": "step_3_fill",
+      "description": "fill on 'Member ID' = {{member_id}}",
+      "action": "fill",
+      "locator": {
+        "description": "textbox \"Member ID\"",
+        "candidates": [
+          {
+            "strategy": "role_name",
+            "value": "textbox::Member ID",
+            "frame_path": [],
+            "confidence": 0.9
+          },
+          {
+            "strategy": "label_text",
+            "value": "Member ID",
+            "frame_path": [],
+            "confidence": 0.7
+          },
+          {
+            "strategy": "css",
+            "value": "#member_id",
+            "frame_path": [],
+            "confidence": 0.6
+          },
+          {
+            "strategy": "css",
+            "value": "#member_id",
+            "frame_path": [],
+            "confidence": 0.3
+          }
+        ]
+      },
+      "value_template": "{{member_id}}",
+      "output_binding": null,
+      "risk": "safe",
+      "timeout_ms": 5000,
+      "retry": {
+        "max_attempts": 2,
+        "backoff_ms": 500,
+        "retry_on": [
+          "timeout",
+          "transient_load"
+        ]
+      }
+    },
+    {
+      "step_id": "step_4_click",
+      "description": "click on 'Look Up Member'",
+      "action": "click",
+      "locator": {
+        "description": "button \"Look Up Member\"",
+        "candidates": [
+          {
+            "strategy": "role_name",
+            "value": "button::Look Up Member",
+            "frame_path": [],
+            "confidence": 0.9
+          },
+          {
+            "strategy": "css",
+            "value": "html > body > form > button",
+            "frame_path": [],
+            "confidence": 0.3
+          },
+          {
+            "strategy": "text",
+            "value": "Look Up Member",
+            "frame_path": [],
+            "confidence": 0.5
+          }
+        ]
+      },
+      "value_template": null,
+      "output_binding": null,
+      "risk": "safe",
+      "timeout_ms": 5000,
+      "retry": {
+        "max_attempts": 2,
+        "backoff_ms": 500,
+        "retry_on": [
+          "timeout",
+          "transient_load"
+        ]
+      }
+    },
+    {
+      "step_id": "step_5_click",
+      "description": "click on 'Account Type'",
+      "action": "click",
+      "locator": {
+        "description": "combobox \"Account Type\"",
+        "candidates": [
+          {
+            "strategy": "role_name",
+            "value": "combobox::Account Type",
+            "frame_path": [],
+            "confidence": 0.9
+          },
+          {
+            "strategy": "css",
+            "value": "#account_type_display",
+            "frame_path": [],
+            "confidence": 0.6
+          },
+          {
+            "strategy": "css",
+            "value": "#account_type_display",
+            "frame_path": [],
+            "confidence": 0.3
+          }
+        ]
+      },
+      "value_template": null,
+      "output_binding": null,
+      "risk": "safe",
+      "timeout_ms": 5000,
+      "retry": {
+        "max_attempts": 2,
+        "backoff_ms": 500,
+        "retry_on": [
+          "timeout",
+          "transient_load"
+        ]
+      }
+    },
+    {
+      "step_id": "step_6_click",
+      "description": "click on 'Savings'",
+      "action": "click",
+      "locator": {
+        "description": "option \"Savings\"",
+        "candidates": [
+          {
+            "strategy": "role_name",
+            "value": "option::Savings",
+            "frame_path": [],
+            "confidence": 0.9
+          },
+          {
+            "strategy": "css",
+            "value": "html > body > form > div:nth-of-type(2) > div:nth-of-type(1)",
+            "frame_path": [],
+            "confidence": 0.3
+          }
+        ]
+      },
+      "value_template": null,
+      "output_binding": null,
+      "risk": "safe",
+      "timeout_ms": 5000,
+      "retry": {
+        "max_attempts": 2,
+        "backoff_ms": 500,
+        "retry_on": [
+          "timeout",
+          "transient_load"
+        ]
+      }
+    },
+    {
+      "step_id": "step_7_fill",
+      "description": "fill on 'Initial Deposit (USD)' = {{initial_deposit}}",
+      "action": "fill",
+      "locator": {
+        "description": "textbox \"Initial Deposit (USD)\"",
+        "candidates": [
+          {
+            "strategy": "role_name",
+            "value": "textbox::Initial Deposit (USD)",
+            "frame_path": [],
+            "confidence": 0.9
+          },
+          {
+            "strategy": "label_text",
+            "value": "Initial Deposit (USD)",
+            "frame_path": [],
+            "confidence": 0.7
+          },
+          {
+            "strategy": "css",
+            "value": "#initial_deposit",
+            "frame_path": [],
+            "confidence": 0.6
+          },
+          {
+            "strategy": "css",
+            "value": "#initial_deposit",
+            "frame_path": [],
+            "confidence": 0.3
+          }
+        ]
+      },
+      "value_template": "{{initial_deposit}}",
+      "output_binding": null,
+      "risk": "safe",
+      "timeout_ms": 5000,
+      "retry": {
+        "max_attempts": 2,
+        "backoff_ms": 500,
+        "retry_on": [
+          "timeout",
+          "transient_load"
+        ]
+      }
+    },
+    {
+      "step_id": "step_8_check",
+      "description": "check on 'I confirm the account holder has agreed to the terms'",
+      "action": "check",
+      "locator": {
+        "description": "checkbox \"I confirm the account holder has agreed to the terms\"",
+        "candidates": [
+          {
+            "strategy": "role_name",
+            "value": "checkbox::I confirm the account holder has agreed to the terms",
+            "frame_path": [],
+            "confidence": 0.9
+          },
+          {
+            "strategy": "label_text",
+            "value": "I confirm the account holder has agreed to the terms",
+            "frame_path": [],
+            "confidence": 0.7
+          },
+          {
+            "strategy": "css",
+            "value": "#terms",
+            "frame_path": [],
+            "confidence": 0.6
+          },
+          {
+            "strategy": "css",
+            "value": "#terms",
+            "frame_path": [],
+            "confidence": 0.3
+          }
+        ]
+      },
+      "value_template": null,
+      "output_binding": null,
+      "risk": "safe",
+      "timeout_ms": 5000,
+      "retry": {
+        "max_attempts": 2,
+        "backoff_ms": 500,
+        "retry_on": [
+          "timeout",
+          "transient_load"
+        ]
+      }
+    },
+    {
+      "step_id": "step_9_click",
+      "description": "click on 'Submit'",
+      "action": "click",
+      "locator": {
+        "description": "button \"Submit\"",
+        "candidates": [
+          {
+            "strategy": "role_name",
+            "value": "button::Submit",
+            "frame_path": [],
+            "confidence": 0.9
+          },
+          {
+            "strategy": "css",
+            "value": "#submit-account",
+            "frame_path": [],
+            "confidence": 0.6
+          },
+          {
+            "strategy": "css",
+            "value": "#submit-account",
+            "frame_path": [],
+            "confidence": 0.3
+          },
+          {
+            "strategy": "text",
+            "value": "Submit",
+            "frame_path": [],
+            "confidence": 0.5
+          }
+        ]
+      },
+      "value_template": null,
+      "output_binding": null,
+      "risk": "risky_irreversible",
+      "timeout_ms": 5000,
+      "retry": {
+        "max_attempts": 2,
+        "backoff_ms": 500,
+        "retry_on": [
+          "timeout",
+          "transient_load"
+        ]
+      }
+    },
+    {
+      "step_id": "step_10_extract",
+      "description": "extract on 'Account Number value'",
+      "action": "extract",
+      "locator": {
+        "description": "text \"Account Number value\"",
+        "candidates": [
+          {
+            "strategy": "role_name",
+            "value": "text::Account Number value",
+            "frame_path": [],
+            "confidence": 0.9
+          },
+          {
+            "strategy": "css",
+            "value": "#account-number",
+            "frame_path": [],
+            "confidence": 0.6
+          },
+          {
+            "strategy": "css",
+            "value": "#account-number",
+            "frame_path": [],
+            "confidence": 0.3
+          }
+        ]
+      },
+      "value_template": null,
+      "output_binding": "account_number",
+      "risk": "safe",
+      "timeout_ms": 5000,
+      "retry": {
+        "max_attempts": 2,
+        "backoff_ms": 500,
+        "retry_on": [
+          "timeout",
+          "transient_load"
+        ]
+      }
+    }
+  ],
+  "checkpoint": {
+    "description": "'Account confirmation panel' confirms goal completion",
+    "locator": {
+      "description": "region \"Account confirmation panel\"",
+      "candidates": [
+        {
+          "strategy": "role_name",
+          "value": "region::Account confirmation panel",
+          "frame_path": [],
+          "confidence": 0.9
+        },
+        {
+          "strategy": "css",
+          "value": "#confirmation-panel",
+          "frame_path": [],
+          "confidence": 0.6
+        },
+        {
+          "strategy": "css",
+          "value": "#confirmation-panel",
+          "frame_path": [],
+          "confidence": 0.3
+        }
+      ]
+    },
+    "condition": "visible",
+    "expected_value": null
+  },
+  "risk_summary": {
+    "highest_risk": "risky_irreversible",
+    "irreversible_step_ids": [
+      "step_9_click"
+    ]
+  },
+  "provenance": {
+    "recorded_by_model": "SCRIPTED-FAKE-MODEL-not-a-real-LLM-call-see-README",
+    "discovery_run_id": "discovery-20260918T193916-49b69b",
+    "recorded_at": "2026-09-18T19:39:17.030192Z"
+  },
+  "review_status": "draft"
+}
