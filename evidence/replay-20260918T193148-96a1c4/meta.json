@@ -1,0 +1,8 @@
+{
+  "run_id": "replay-20260918T193148-96a1c4",
+  "run_type": "replay",
+  "artifact_id": "mockbank__open-sub-account",
+  "version": "1.0.0",
+  "kind": "business_outcome",
+  "business_code": "MEMBER_NOT_FOUND"
+}

@@ -1,0 +1,6 @@
+{"ts": 1789759908.1713402, "event": "replay_started", "artifact_id": "mockbank__open-sub-account", "version": "1.0.0", "args": ["base_url", "member_id", "initial_deposit"]}
+{"ts": 1789759908.2033808, "event": "replay_step", "step_id": "s0_nav", "action": "navigate", "ok": true, "error": null, "attempts": 1}
+{"ts": 1789759908.2623312, "event": "replay_step", "step_id": "s1_cookie", "action": "click", "ok": true, "error": null, "attempts": 1}
+{"ts": 1789759908.277886, "event": "replay_step", "step_id": "s2_fill_member", "action": "fill", "ok": true, "error": null, "attempts": 1}
+{"ts": 1789759908.3530557, "event": "replay_step", "step_id": "s3_lookup", "action": "click", "ok": true, "error": null, "attempts": 1}
+{"ts": 1789759908.3835273, "event": "business_outcome_detected", "code": "MEMBER_NOT_FOUND", "message": "Member not found: 99999"}
