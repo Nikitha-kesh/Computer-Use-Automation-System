@@ -4,5 +4,6 @@ __pycache__/
 venv/
 .pytest_cache/
 evidence/_test/
+artifacts/_test/
 *.egg-info/
 .DS_Store
