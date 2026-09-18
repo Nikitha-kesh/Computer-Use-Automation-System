@@ -1,0 +1,347 @@
+{
+  "schema_version": "1.0",
+  "artifact_id": "mockbank__open-sub-account",
+  "name": "mockbank: open a new sub-account",
+  "version": "1.0.0",
+  "description": "Open a new sub-account for a member and reach the confirmation screen",
+  "target": {
+    "app_id": "mockbank",
+    "base_url": "{{base_url}}",
+    "vendor_product": null,
+    "tenant_id": null
+  },
+  "input_params": [
+    {
+      "name": "base_url",
+      "type": "string",
+      "required": true,
+      "description": "target base url",
+      "enum_values": null,
+      "pii": false
+    },
+    {
+      "name": "member_id",
+      "type": "string",
+      "required": true,
+      "description": "member id to look up",
+      "enum_values": null,
+      "pii": false
+    },
+    {
+      "name": "initial_deposit",
+      "type": "string",
+      "required": true,
+      "description": "initial deposit amount",
+      "enum_values": null,
+      "pii": false
+    }
+  ],
+  "output_fields": [
+    {
+      "name": "account_number",
+      "type": "string",
+      "description": "new account number",
+      "source_step_id": "s9_extract_acct"
+    }
+  ],
+  "steps": [
+    {
+      "step_id": "s0_nav",
+      "description": "open lookup page",
+      "action": "navigate",
+      "locator": null,
+      "value_template": "{{base_url}}/",
+      "output_binding": null,
+      "risk": "safe",
+      "timeout_ms": 5000,
+      "retry": {
+        "max_attempts": 2,
+        "backoff_ms": 500,
+        "retry_on": [
+          "timeout",
+          "transient_load"
+        ]
+      }
+    },
+    {
+      "step_id": "s1_cookie",
+      "description": "dismiss cookie banner if present",
+      "action": "click",
+      "locator": {
+        "description": "Accept cookies",
+        "candidates": [
+          {
+            "strategy": "css",
+            "value": "#cookie-accept",
+            "frame_path": [],
+            "confidence": 0.9
+          }
+        ]
+      },
+      "value_template": null,
+      "output_binding": null,
+      "risk": "safe",
+      "timeout_ms": 5000,
+      "retry": {
+        "max_attempts": 1,
+        "backoff_ms": 500,
+        "retry_on": [
+          "timeout",
+          "transient_load"
+        ]
+      }
+    },
+    {
+      "step_id": "s2_fill_member",
+      "description": "fill member id",
+      "action": "fill",
+      "locator": {
+        "description": "Member ID input",
+        "candidates": [
+          {
+            "strategy": "css",
+            "value": "#member_id",
+            "frame_path": [],
+            "confidence": 0.9
+          }
+        ]
+      },
+      "value_template": "{{member_id}}",
+      "output_binding": null,
+      "risk": "safe",
+      "timeout_ms": 5000,
+      "retry": {
+        "max_attempts": 2,
+        "backoff_ms": 500,
+        "retry_on": [
+          "timeout",
+          "transient_load"
+        ]
+      }
+    },
+    {
+      "step_id": "s3_lookup",
+      "description": "click Look Up Member",
+      "action": "click",
+      "locator": {
+        "description": "Look Up Member button",
+        "candidates": [
+          {
+            "strategy": "role_name",
+            "value": "button::Look Up Member",
+            "frame_path": [],
+            "confidence": 0.9
+          }
+        ]
+      },
+      "value_template": null,
+      "output_binding": null,
+      "risk": "safe",
+      "timeout_ms": 5000,
+      "retry": {
+        "max_attempts": 2,
+        "backoff_ms": 500,
+        "retry_on": [
+          "timeout",
+          "transient_load"
+        ]
+      }
+    },
+    {
+      "step_id": "s4_type",
+      "description": "open account type dropdown",
+      "action": "click",
+      "locator": {
+        "description": "Account type control",
+        "candidates": [
+          {
+            "strategy": "css",
+            "value": "#account_type_display",
+            "frame_path": [],
+            "confidence": 0.9
+          }
+        ]
+      },
+      "value_template": null,
+      "output_binding": null,
+      "risk": "safe",
+      "timeout_ms": 5000,
+      "retry": {
+        "max_attempts": 2,
+        "backoff_ms": 500,
+        "retry_on": [
+          "timeout",
+          "transient_load"
+        ]
+      }
+    },
+    {
+      "step_id": "s5_type_option",
+      "description": "choose Savings",
+      "action": "click",
+      "locator": {
+        "description": "Savings option",
+        "candidates": [
+          {
+            "strategy": "text",
+            "value": "Savings",
+            "frame_path": [],
+            "confidence": 0.6
+          }
+        ]
+      },
+      "value_template": null,
+      "output_binding": null,
+      "risk": "safe",
+      "timeout_ms": 5000,
+      "retry": {
+        "max_attempts": 2,
+        "backoff_ms": 500,
+        "retry_on": [
+          "timeout",
+          "transient_load"
+        ]
+      }
+    },
+    {
+      "step_id": "s6_deposit",
+      "description": "fill initial deposit",
+      "action": "fill",
+      "locator": {
+        "description": "Initial deposit input",
+        "candidates": [
+          {
+            "strategy": "css",
+            "value": "#initial_deposit",
+            "frame_path": [],
+            "confidence": 0.9
+          }
+        ]
+      },
+      "value_template": "{{initial_deposit}}",
+      "output_binding": null,
+      "risk": "safe",
+      "timeout_ms": 5000,
+      "retry": {
+        "max_attempts": 2,
+        "backoff_ms": 500,
+        "retry_on": [
+          "timeout",
+          "transient_load"
+        ]
+      }
+    },
+    {
+      "step_id": "s7_terms",
+      "description": "check terms",
+      "action": "check",
+      "locator": {
+        "description": "Terms checkbox",
+        "candidates": [
+          {
+            "strategy": "css",
+            "value": "#terms",
+            "frame_path": [],
+            "confidence": 0.9
+          }
+        ]
+      },
+      "value_template": null,
+      "output_binding": null,
+      "risk": "safe",
+      "timeout_ms": 5000,
+      "retry": {
+        "max_attempts": 2,
+        "backoff_ms": 500,
+        "retry_on": [
+          "timeout",
+          "transient_load"
+        ]
+      }
+    },
+    {
+      "step_id": "s8_submit",
+      "description": "submit account",
+      "action": "click",
+      "locator": {
+        "description": "Submit button",
+        "candidates": [
+          {
+            "strategy": "css",
+            "value": "#submit-account",
+            "frame_path": [],
+            "confidence": 0.9
+          }
+        ]
+      },
+      "value_template": null,
+      "output_binding": null,
+      "risk": "risky_irreversible",
+      "timeout_ms": 5000,
+      "retry": {
+        "max_attempts": 2,
+        "backoff_ms": 500,
+        "retry_on": [
+          "timeout",
+          "transient_load"
+        ]
+      }
+    },
+    {
+      "step_id": "s9_extract_acct",
+      "description": "extract account number",
+      "action": "extract",
+      "locator": {
+        "description": "Account number cell",
+        "candidates": [
+          {
+            "strategy": "css",
+            "value": "#account-number",
+            "frame_path": [],
+            "confidence": 0.9
+          }
+        ]
+      },
+      "value_template": null,
+      "output_binding": "account_number",
+      "risk": "safe",
+      "timeout_ms": 5000,
+      "retry": {
+        "max_attempts": 2,
+        "backoff_ms": 500,
+        "retry_on": [
+          "timeout",
+          "transient_load"
+        ]
+      }
+    }
+  ],
+  "checkpoint": {
+    "description": "confirmation panel visible",
+    "locator": {
+      "description": "confirmation panel",
+      "candidates": [
+        {
+          "strategy": "css",
+          "value": "#confirmation-panel",
+          "frame_path": [],
+          "confidence": 0.9
+        }
+      ]
+    },
+    "condition": "visible",
+    "expected_value": null
+  },
+  "risk_summary": {
+    "highest_risk": "risky_irreversible",
+    "irreversible_step_ids": [
+      "s8_submit"
+    ]
+  },
+  "provenance": {
+    "recorded_by_model": "hand-authored-test-fixture",
+    "discovery_run_id": "n/a",
+    "recorded_at": "2026-09-18T19:31:47.062239Z"
+  },
+  "review_status": "draft"
+}
